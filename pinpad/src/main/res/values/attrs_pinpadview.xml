@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="PinPadView">
+        <attr name="pin_indicator_color" format="color" />
+        <attr name="textColor" />
+        <attr name="text_prompt" format="string" />
+    </declare-styleable>
+</resources>
