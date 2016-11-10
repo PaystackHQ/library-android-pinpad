@@ -3,6 +3,7 @@
     
     <declare-styleable name="PinPadView">
         <attr name="pin_indicator_color" format="color" />
+        <attr name="pin_length" format="integer" />
         <attr name="textColor" />
         <attr name="text_prompt" format="string" />
     </declare-styleable>
