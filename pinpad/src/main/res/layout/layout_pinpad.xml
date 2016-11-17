@@ -133,6 +133,12 @@
                 style="@style/Widget.PinPad"
                 android:id="@+id/ps_btn_0"
                 app:button_text_numeric="@string/num_0"/>
+
+            <!-- done button -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_done"
+                app:button_text_numeric="Done"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>
