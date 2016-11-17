@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ps_padding_prompt">24dp</dimen>
+    <dimen name="ps_padding_prompt_top">16dp</dimen>
+    <dimen name="ps_height_indicator">64dp</dimen>
+</resources>

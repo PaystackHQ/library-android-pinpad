@@ -13,23 +13,29 @@
         android:id="@+id/pinpad_prompt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp"
+        android:paddingLeft="@dimen/ps_padding_prompt"
+        android:paddingRight="@dimen/ps_padding_prompt"
+        android:paddingTop="@dimen/ps_padding_prompt_top"
         android:textSize="17sp"
         android:gravity="center"
-        android:textColor="#f1f1f1"
         tools:text="To confirm you're the owner of this card, please enter your card pin"/>
 
     <!-- indicator layout -->
-    <View
+    <LinearLayout
+        android:id="@+id/indicator_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp" />
+        android:layout_height="@dimen/ps_height_indicator"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+    </LinearLayout>
     
     <!-- -->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_marginLeft="-8dp"
         android:stretchColumns="*"
         >
         <!-- row 1 -->
