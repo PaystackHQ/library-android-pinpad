@@ -22,6 +22,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':pinpad')
 
     // support library dependency
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"

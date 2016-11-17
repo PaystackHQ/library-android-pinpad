@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:background="#292929"
+    android:padding="16dp">
+
+    <!-- pinpad prompt -->
+    <TextView
+        android:id="@+id/pinpad_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:textColor="#f1f1f1"
+        tools:text="To confirm you're the owner of this card, please enter your card pin"/>
+
+    <!-- indicator layout -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+    
+    <!-- -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginLeft="-8dp"
+        android:stretchColumns="*"
+        >
+        <!-- row 1 -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <!-- button 1 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_1"
+                app:button_text_numeric="@string/num_1"/>
+
+            <!-- button 2 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_2"
+                app:button_text_numeric="@string/num_2"
+                app:button_text_alpha="abc"/>
+
+            <!-- button 3 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_3"
+                app:button_text_numeric="@string/num_3"
+                app:button_text_alpha="def"/>
+        </TableRow>
+
+
+        <!-- row 2 -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <!-- button 4 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_4"
+                app:button_text_numeric="@string/num_4"
+                app:button_text_alpha="ghi"/>
+
+            <!-- button 5 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_5"
+                app:button_text_numeric="@string/num_5"
+                app:button_text_alpha="jkl"/>
+
+            <!-- button 6 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_6"
+                app:button_text_numeric="@string/num_6"
+                app:button_text_alpha="mno"/>
+        </TableRow>
+
+        <!-- row 3 -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <!-- button 7 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_7"
+                app:button_text_numeric="@string/num_7"
+                app:button_text_alpha="pqrs"/>
+
+            <!-- button 8 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_8"
+                app:button_text_numeric="@string/num_8"
+                app:button_text_alpha="tuv"/>
+
+            <!-- button 9 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_9"
+                app:button_text_numeric="@string/num_9"
+                app:button_text_alpha="wxyz"/>
+        </TableRow>
+
+        <!-- row 4 -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <!-- back button -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_back"
+                app:button_drawable="@drawable/ps_backspace"/>
+
+            <!-- button 0 -->
+            <co.paystack.android.design.widget.PinPadButton
+                style="@style/Widget.PinPad"
+                android:id="@+id/ps_btn_0"
+                app:button_text_numeric="@string/num_0"/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
