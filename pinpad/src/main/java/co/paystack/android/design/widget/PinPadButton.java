@@ -9,17 +9,15 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-class PinPadButton extends LinearLayout {
+class PinPadButton extends ForegroundRelativeLayout {
     private static final float DEFAULT_TEXT_SIZE_NUMERIC = 18f;
     private static final float DEFAULT_TEXT_SIZE_ALPHA = 12f;
     private static final int DEFAULT_DRAWABLE_SIZE = 15;
@@ -117,10 +115,9 @@ class PinPadButton extends LinearLayout {
         }
 
         setTextColor(mTextColor);
-        setOrientation(HORIZONTAL);
         LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
-        lp.gravity = Gravity.CENTER;
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
         setLayoutParams(lp);
         setClickable(true);
     }
@@ -233,7 +230,6 @@ class PinPadButton extends LinearLayout {
         }
         return super.dispatchTouchEvent(event);
     }
-
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {

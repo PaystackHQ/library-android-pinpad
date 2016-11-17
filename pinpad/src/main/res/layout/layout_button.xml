@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<co.paystack.android.design.widget.ForegroundRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:clickable="true"
+    android:foreground="?selectableItemBackground"
     >
 
     <!-- numeric text -->
@@ -46,4 +47,4 @@
         android:visibility="gone"
         android:layout_centerInParent="true"
         />
-</RelativeLayout>
+</co.paystack.android.design.widget.ForegroundRelativeLayout>
