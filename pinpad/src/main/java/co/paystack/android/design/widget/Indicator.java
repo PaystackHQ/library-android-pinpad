@@ -49,6 +49,7 @@ class Indicator extends LinearLayout implements Checkable {
 
     public Indicator(Context context) {
         super(context);
+        init(context, null);
     }
 
     public Indicator(Context context, AttributeSet attrs) {
@@ -68,27 +69,28 @@ class Indicator extends LinearLayout implements Checkable {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        if (context != null && attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PinPadView);
+        if (context != null) {
+            if (attrs != null) {
+                TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PinPadView);
 
-            mIndicatorSize = a.getDimensionPixelSize(R.styleable.PinPadView_pin_indicator_size,
-                    convertDpToPixel(DEFAULT_INDICATOR_SIZE));
-            mIndicatorStrokeWidth = a.getDimensionPixelOffset(R.styleable.PinPadView_pin_indicator_stroke_width,
-                    4);
-            if (a.hasValue(R.styleable.PinPadView_pin_indicator_color)) {
-                mIndicatorColor = a.getColor(R.styleable.PinPadView_pin_indicator_color,
-                        DEFAULT_INDICATOR_COLOR);
+                mIndicatorSize = a.getDimensionPixelSize(R.styleable.PinPadView_pin_indicator_size,
+                        convertDpToPixel(DEFAULT_INDICATOR_SIZE));
+                mIndicatorStrokeWidth = a.getDimensionPixelOffset(R.styleable.PinPadView_pin_indicator_stroke_width,
+                        4);
+                if (a.hasValue(R.styleable.PinPadView_pin_indicator_color)) {
+                    mIndicatorColor = a.getColor(R.styleable.PinPadView_pin_indicator_color,
+                            DEFAULT_INDICATOR_COLOR);
+                }
+                a.recycle();
             }
-            a.recycle();
 
-            LinearLayout.LayoutParams params = new LayoutParams(mIndicatorSize, mIndicatorSize);
+            setIndicatorSize(mIndicatorSize);
             // create drawable
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 setBackground(createDrawable());
             } else {
                 setBackgroundDrawable(createDrawable());
             }
-            setLayoutParams(params);
             setChecked(false);
         }
 
@@ -115,6 +117,12 @@ class Indicator extends LinearLayout implements Checkable {
         drawable.setShape(GradientDrawable.OVAL);
         drawable.setColor(mIndicatorColor);
         return drawable;
+    }
+
+    public void setIndicatorSize(int size) {
+        mIndicatorSize = size;
+        LinearLayout.LayoutParams params = new LayoutParams(size, size);
+        setLayoutParams(params);
     }
 
     public void setColor(@ColorInt int color) {

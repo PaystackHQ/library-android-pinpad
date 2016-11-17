@@ -6,9 +6,12 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -42,6 +45,7 @@ class PinPadButton extends ForegroundLinearLayout implements View.OnClickListene
 
     public PinPadButton(Context context) {
         super(context);
+        init(context, null, 0);
     }
 
     public PinPadButton(Context context, AttributeSet attrs) {
@@ -53,13 +57,13 @@ class PinPadButton extends ForegroundLinearLayout implements View.OnClickListene
         init(context, attrs, defStyle);
     }
 
-    private void init(Context context, AttributeSet attrs, int defStyle) {
-        if (context != null && attrs != null) {
-            View view = inflate(context, R.layout.layout_button, this);
-            mTextViewNumeric = (TextView) view.findViewById(R.id.numeric_text);
-            mTextViewAlphabet = (TextView) view.findViewById(R.id.alphabet_text);
-            mImageIcon = (ImageView) view.findViewById(R.id.pinbutton_icon);
+    private void init(@NonNull Context context, AttributeSet attrs, int defStyle) {
+        View view = inflate(context, R.layout.layout_button, this);
+        mTextViewNumeric = (TextView) view.findViewById(R.id.numeric_text);
+        mTextViewAlphabet = (TextView) view.findViewById(R.id.alphabet_text);
+        mImageIcon = (ImageView) view.findViewById(R.id.pinbutton_icon);
 
+        if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PinPadView ,defStyle, 0);
 
             mTextSizeNumeric = a.getDimension(R.styleable.PinPadView_button_numeric_textsize,
@@ -81,45 +85,46 @@ class PinPadButton extends ForegroundLinearLayout implements View.OnClickListene
                 mTextColor = a.getColorStateList(R.styleable.PinPadView_text_color);
             }
 
-            if (mButtonDrawable == null) {
-                if (mTextNumeric != null && !mTextNumeric.isEmpty()) {
-                    // create numeric textview
-                    mImageIcon.setVisibility(GONE);
-                    mTextViewNumeric.setVisibility(VISIBLE);
-                    mTextViewNumeric.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSizeNumeric);
-                    mTextViewNumeric.setText(mTextNumeric);
-
-                }
-                if (mTextAlphabet != null && !mTextAlphabet.isEmpty()) {
-                    // create alphabet textview
-                    mImageIcon.setVisibility(GONE);
-                    mTextViewAlphabet.setVisibility(VISIBLE);
-                    mTextViewAlphabet.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSizeAlpha);
-                    mTextViewAlphabet.setText(mTextAlphabet);
-                }
-            } else {
-                mImageIcon.setVisibility(VISIBLE);
-                mTextViewAlphabet.setVisibility(GONE);
-                mTextViewNumeric.setVisibility(GONE);
-                // create icon
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(mDrawableSize, mDrawableSize);
-                params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-                mImageIcon.setLayoutParams(params);
-                mImageIcon.setImageDrawable(mButtonDrawable);
-            }
-
-            setTextColor(mTextColor);
-
             a.recycle();
         }
 
-        setClickable(true);
-        setOnClickListener(this);
+        if (mButtonDrawable == null) {
+            if (mTextNumeric != null && !mTextNumeric.isEmpty()) {
+                // create numeric textview
+                mImageIcon.setVisibility(GONE);
+                mTextViewNumeric.setVisibility(VISIBLE);
+                mTextViewNumeric.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSizeNumeric);
+                mTextViewNumeric.setText(mTextNumeric);
+
+            }
+            if (mTextAlphabet != null && !mTextAlphabet.isEmpty()) {
+                // create alphabet textview
+                mImageIcon.setVisibility(GONE);
+                mTextViewAlphabet.setVisibility(VISIBLE);
+                mTextViewAlphabet.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSizeAlpha);
+                mTextViewAlphabet.setText(mTextAlphabet);
+            }
+        } else {
+            mImageIcon.setVisibility(VISIBLE);
+            mTextViewAlphabet.setVisibility(GONE);
+            mTextViewNumeric.setVisibility(GONE);
+            // create icon
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(mDrawableSize, mDrawableSize);
+            params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            mImageIcon.setLayoutParams(params);
+            mImageIcon.setImageDrawable(mButtonDrawable);
+        }
+
+        setTextColor(mTextColor);
         setOrientation(HORIZONTAL);
         LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         lp.gravity = Gravity.CENTER;
         setLayoutParams(lp);
+        setClickable(true);
+        setOnClickListener(this);
+        view.setClickable(true);
+        view.setOnClickListener(this);
     }
 
     /**
@@ -223,8 +228,29 @@ class PinPadButton extends ForegroundLinearLayout implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        if (mButtonClickListener != null) {
-            mButtonClickListener.onButtonClick(this);
+//        if (mButtonClickListener != null) {
+//            mButtonClickListener.onButtonClick(this);
+//        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_UP) {
+            if(mButtonClickListener != null) {
+                mButtonClickListener.onButtonClick(this);
+            }
         }
+        return super.dispatchTouchEvent(event);
+    }
+
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if(event.getAction() == KeyEvent.ACTION_UP && (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+            if(mButtonClickListener != null) {
+                mButtonClickListener.onButtonClick(this);
+            }
+        }
+        return super.dispatchKeyEvent(event);
     }
 }

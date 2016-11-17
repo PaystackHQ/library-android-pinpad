@@ -20,6 +20,26 @@ import java.util.List;
 
 /**
  * PinPadView
+ *
+ * <pre>
+ * &lt;co.paystack.android.design.widget.PinPadView
+ *     xmlns:android="http://schemas.android.com/apk/res/android"
+ *     xmlns:app="http://schema.android.com/apk/res/android.support.design"
+ *      android:layout_width="match_parent"
+ *      android:layout_height="0dp"
+ *      android:layout_weight="7"
+ *      android:background="#292929"
+ *      app:text_prompt="@string/prompt"
+ *      app:pin_indicator_spacing="28dp"
+ *      app:pin_indicator_color="@android:color/white"
+ *      app:pin_indicator_size="15dp"
+ *      app:pin_indicator_stroke_width="4dp"
+ *      app:prompt_textsize="15sp"
+ *      app:button_numeric_textsize="18sp"
+ *      app:button_alpha_textsize="8sp"
+ *      app:button_drawable_size="32dp"
+ *      app:text_color="@android:color/white"/> /&gt;
+ * </pre>
  */
 public class PinPadView extends FrameLayout {
     private static final int DEFAULT_INDICATOR_COLOR = Color.WHITE;
@@ -163,7 +183,7 @@ public class PinPadView extends FrameLayout {
             mPinBuilder = new StringBuilder();
 
             // crate the indicators
-            createIndicators(context, attrs);
+            createIndicators(context);
 
             //set properties;
             setNumericTextSize(mTextSizeNumeric, false);
@@ -172,6 +192,7 @@ public class PinPadView extends FrameLayout {
             setTextColor(mTextColor, false);
             setPromptTextSize(mTextSizePrompt, false);
             setPromptText(mPromptText);
+            setPinLength(mPinLength);
             setButtonClickListeners();
             updateIndicators(mPinBuilder.toString());
         }
@@ -231,6 +252,7 @@ public class PinPadView extends FrameLayout {
     public void setPinLength(int length) {
         if (length < 0) return;
         mPinLength = length;
+        createIndicators(getContext());
         requestLayout();
     }
 
@@ -269,21 +291,24 @@ public class PinPadView extends FrameLayout {
         }
     }
 
-    private void createIndicators(Context context, AttributeSet attrs) {
+    private void createIndicators(Context context) {
+        mLayoutIndicator.removeAllViews();
         for (int i=0; i<mPinLength; i++) {
-            Indicator indicator = new Indicator(context, attrs);
+            Indicator indicator = new Indicator(context);
             indicator.setChecked(false);
+            indicator.setIndicatorSize(mIndicatorSize);
+            indicator.setColor(mIndicatorColor);
 
             int left, right;
             if (i == 0) {
                 left = 0;
-                right = (int) mIndicatorSpacing;
+                right = mIndicatorSpacing;
             } else if (i == mPinLength - 1) {
-                left= (int) mIndicatorSpacing;
+                left= mIndicatorSpacing;
                 right  = 0;
             } else {
-                left = (int) mIndicatorSpacing;
-                right = (int) mIndicatorSpacing;
+                left = mIndicatorSpacing;
+                right = mIndicatorSpacing;
             }
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(mIndicatorSize, mIndicatorSize);
@@ -296,10 +321,14 @@ public class PinPadView extends FrameLayout {
     }
 
     private void updateIndicators(String pin) {
-        if (mLayoutIndicator.getChildCount() <= pin.length()) {
+        if (pin.length() <= mLayoutIndicator.getChildCount()) {
             for (int i=0; i<pin.length(); i++) {
                 Indicator indicator = (Indicator) mLayoutIndicator.getChildAt(i);
                 indicator.setChecked(true);
+            }
+            for (int i=pin.length(); i<mLayoutIndicator.getChildCount(); i++) {
+                Indicator indicator = (Indicator) mLayoutIndicator.getChildAt(i);
+                indicator.setChecked(false);
             }
         }
         requestLayout();
