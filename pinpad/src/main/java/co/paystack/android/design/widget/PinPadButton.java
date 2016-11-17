@@ -15,10 +15,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-class PinPadButton extends ForegroundLinearLayout implements View.OnClickListener {
+class PinPadButton extends LinearLayout {
     private static final float DEFAULT_TEXT_SIZE_NUMERIC = 18f;
     private static final float DEFAULT_TEXT_SIZE_ALPHA = 12f;
     private static final int DEFAULT_DRAWABLE_SIZE = 15;
@@ -122,9 +123,6 @@ class PinPadButton extends ForegroundLinearLayout implements View.OnClickListene
         lp.gravity = Gravity.CENTER;
         setLayoutParams(lp);
         setClickable(true);
-        setOnClickListener(this);
-        view.setClickable(true);
-        view.setOnClickListener(this);
     }
 
     /**
@@ -224,13 +222,6 @@ class PinPadButton extends ForegroundLinearLayout implements View.OnClickListene
     public void setTextColor(@ColorInt int color) {
         setTextColor(ColorStateList.valueOf(color));
         requestLayout();
-    }
-
-    @Override
-    public void onClick(View view) {
-//        if (mButtonClickListener != null) {
-//            mButtonClickListener.onButtonClick(this);
-//        }
     }
 
     @Override
