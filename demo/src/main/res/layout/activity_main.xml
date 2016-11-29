@@ -8,12 +8,14 @@
     android:orientation="vertical"
     tools:context="com.segunfamisa.demo.pinpad.MainActivity">
 
-    <View
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
     <co.paystack.android.design.widget.PinPadView
+        android:id="@+id/pinpadView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
@@ -23,5 +25,8 @@
         app:button_numeric_textsize="17sp"
         app:button_alpha_textsize="8sp"
         app:button_drawable_size="24dp"
+        app:pin_length="17"
+        app:pin_indicator_stroke_width="20sp"
+        app:place_digits_randomly="false"
         app:text_color="@android:color/holo_blue_bright"/>
 </LinearLayout>
