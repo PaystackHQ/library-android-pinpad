@@ -88,6 +88,7 @@ public class PinPadView extends FrameLayout {
     private List<PinPadButton> mButtons;
 
     private OnPinChangedListener mPinChangeListener;
+    private OnCompletedListener mCompletedListener;
 
     /**
      * StringBuilder for the pin text
@@ -102,11 +103,14 @@ public class PinPadView extends FrameLayout {
          */
         void onPinChanged(String oldPin, String newPin);
 
+    }
+
+    public interface OnCompletedListener {
         /**
          * Listener method called when the "enter/done" key is pressed
          * @param pin - pin
          */
-        void onCompletedListener(String pin);
+        void onCompleted(String pin);
     }
 
     public PinPadView(Context context) {
@@ -245,6 +249,14 @@ public class PinPadView extends FrameLayout {
      */
     public void setOnPinChangedListener(OnPinChangedListener listener) {
         mPinChangeListener = listener;
+    }
+
+    /**
+     * Sets the listener to handle clicking done
+     * @param listener - {@link OnCompletedListener} listener
+     */
+    public void setOnCompletedListener(OnCompletedListener listener) {
+        mCompletedListener = listener;
     }
 
     /**
@@ -411,8 +423,8 @@ public class PinPadView extends FrameLayout {
     private PinPadButton.OnButtonClickListener mDoneButtonClickListener = new PinPadButton.OnButtonClickListener() {
         @Override
         public void onButtonClick(PinPadButton button) {
-            if (mPinChangeListener != null) {
-                mPinChangeListener.onCompletedListener(mPinBuilder.toString());
+            if (mCompletedListener != null) {
+                mCompletedListener.onCompleted(mPinBuilder.toString());
             }
         }
     };
