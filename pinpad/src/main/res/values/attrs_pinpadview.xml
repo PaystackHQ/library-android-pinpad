@@ -2,6 +2,7 @@
 <resources>
     
     <declare-styleable name="PinPadView">
+        <attr name="place_digits_randomly" format="boolean" />
         <attr name="pin_indicator_color" format="color" />
         <attr name="pin_indicator_size" format="dimension" />
         <attr name="pin_indicator_stroke_width" format="dimension" />

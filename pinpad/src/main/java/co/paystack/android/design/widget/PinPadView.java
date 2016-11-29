@@ -16,7 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.*;
 
 /**
  * PinPadView
@@ -50,6 +52,7 @@ public class PinPadView extends FrameLayout {
     private static final float DEFAULT_TEXT_SIZE_ALPHA = 12f;
     private static final float DEFAULT_TEXT_SIZE_PROMPT = 18f;
     private static final int DEFAULT_INDICATOR_SPACING = 8;
+    private static final boolean DEFAULT_PLACE_DIGITS_RANDOMLY = true;
 
     @ColorInt
     private int mIndicatorColor = DEFAULT_INDICATOR_COLOR;
@@ -64,6 +67,8 @@ public class PinPadView extends FrameLayout {
     private float mTextSizeAlpha;
     private float mTextSizePrompt;
     private int mDrawableSize;
+
+    private boolean mPlaceDigitsRandomly = DEFAULT_PLACE_DIGITS_RANDOMLY;
 
     private PinPadButton mButton0;
     private PinPadButton mButton1;
@@ -123,8 +128,14 @@ public class PinPadView extends FrameLayout {
         init(context, attrs);
     }
 
+    private AttributeSet mAttrs;
+    private AttributeSet getAttrs(){
+        return mAttrs;
+    }
+
     private void init(Context context, AttributeSet attrs) {
         if (context != null && attrs != null) {
+            mAttrs = attrs;
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PinPadView);
 
             mPinLength = a.getInteger(R.styleable.PinPadView_pin_length, DEFAULT_PIN_LENGTH);
@@ -140,6 +151,8 @@ public class PinPadView extends FrameLayout {
                     DEFAULT_INDICATOR_SIZE);
             mIndicatorSpacing = a.getDimensionPixelSize(R.styleable.PinPadView_pin_indicator_spacing,
                     DEFAULT_INDICATOR_SPACING);
+            mPlaceDigitsRandomly = a.getBoolean(R.styleable.PinPadView_place_digits_randomly,
+                    DEFAULT_PLACE_DIGITS_RANDOMLY);
 
             if (a.hasValue(R.styleable.PinPadView_pin_indicator_color)) {
                 mIndicatorColor = a.getColor(R.styleable.PinPadView_pin_indicator_color,
@@ -178,10 +191,20 @@ public class PinPadView extends FrameLayout {
                     mButton0, mButton1, mButton2, mButton3, mButton4,
                     mButton5, mButton6, mButton7, mButton8, mButton9);
 
+            int[] numbersArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            if(mPlaceDigitsRandomly){
+                shuffleArray(numbersArray);
+            }
+
+            for(int i=0; i<numbersArray.length; i++){
+                assignNumber(mButtons.get(i), numbersArray[i]);
+            }
+
             mPinBuilder = new StringBuilder();
 
             // crate the indicators
-            createIndicators(context);
+            createIndicators(context, attrs);
 
             //set properties;
             setNumericTextSize(mTextSizeNumeric, false);
@@ -196,6 +219,26 @@ public class PinPadView extends FrameLayout {
         }
     }
 
+    private void assignNumber(PinPadButton p, Integer i){
+        mButtonNumbers.put(p, i);
+        p.setNumericText(Integer.toString(i));
+
+    }
+
+    private HashMap<PinPadButton, Integer> mButtonNumbers = new HashMap<>();
+
+    private void shuffleArray(int[] ar)
+    {
+        Random rnd = new Random();
+        for (int i = ar.length - 1; i > 0; i--)
+        {
+            int index = rnd.nextInt(i + 1);
+            // Simple swap
+            int a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
+        }
+    }
     /**
      * Sets the listener to receive changes to the entered pin
      * @param listener - {@link OnPinChangedListener} listener
@@ -250,7 +293,7 @@ public class PinPadView extends FrameLayout {
     public void setPinLength(int length) {
         if (length < 0) return;
         mPinLength = length;
-        createIndicators(getContext());
+        createIndicators(getContext(), getAttrs());
         requestLayout();
     }
 
@@ -289,10 +332,10 @@ public class PinPadView extends FrameLayout {
         }
     }
 
-    private void createIndicators(Context context) {
+    private void createIndicators(Context context, AttributeSet attrs) {
         mLayoutIndicator.removeAllViews();
         for (int i=0; i<mPinLength; i++) {
-            Indicator indicator = new Indicator(context);
+            Indicator indicator = new Indicator(context, attrs);
             indicator.setChecked(false);
             indicator.setIndicatorSize(mIndicatorSize);
             indicator.setColor(mIndicatorColor);
@@ -376,27 +419,7 @@ public class PinPadView extends FrameLayout {
 
     private String getValueForButton(PinPadButton button) {
         if (button != null) {
-            if (button == mButton0) {
-                return String.valueOf(0);
-            } else if (button == mButton1) {
-                return String.valueOf(1);
-            } else if (button == mButton2) {
-                return String.valueOf(2);
-            } else if (button == mButton3) {
-                return String.valueOf(3);
-            } else if (button == mButton4) {
-                return String.valueOf(4);
-            } else if (button == mButton5) {
-                return String.valueOf(5);
-            } else if (button == mButton6) {
-                return String.valueOf(6);
-            } else if (button == mButton7) {
-                return String.valueOf(7);
-            } else if (button == mButton8) {
-                return String.valueOf(8);
-            } else if (button == mButton9) {
-                return String.valueOf(9);
-            }
+            return mButtonNumbers.get(button).toString();
         }
         return "";
     }
