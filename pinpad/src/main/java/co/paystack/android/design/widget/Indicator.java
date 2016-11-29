@@ -36,6 +36,7 @@ class Indicator extends LinearLayout implements Checkable {
 
     private static final int DEFAULT_INDICATOR_COLOR = Color.WHITE;
     private static final int DEFAULT_INDICATOR_SIZE = 12;
+    private static final int DEFAULT_INDICATOR_STROKE_WIDTH = 4;
     private static final int[] CHECKED_STATE_SET = {android.R.attr.state_checked};
 
     private boolean mChecked = false;
@@ -43,7 +44,7 @@ class Indicator extends LinearLayout implements Checkable {
     @ColorInt
     private int mIndicatorColor = DEFAULT_INDICATOR_COLOR;
     private int mIndicatorSize;
-    private int mIndicatorStrokeWidth = 4;
+    private int mIndicatorStrokeWidth = DEFAULT_INDICATOR_STROKE_WIDTH;
 
     private OnCheckedChangeListener mOnCheckedChangeListener;
 
@@ -76,7 +77,7 @@ class Indicator extends LinearLayout implements Checkable {
                 mIndicatorSize = a.getDimensionPixelSize(R.styleable.PinPadView_pin_indicator_size,
                         convertDpToPixel(DEFAULT_INDICATOR_SIZE));
                 mIndicatorStrokeWidth = a.getDimensionPixelOffset(R.styleable.PinPadView_pin_indicator_stroke_width,
-                        4);
+                        DEFAULT_INDICATOR_STROKE_WIDTH);
                 if (a.hasValue(R.styleable.PinPadView_pin_indicator_color)) {
                     mIndicatorColor = a.getColor(R.styleable.PinPadView_pin_indicator_color,
                             DEFAULT_INDICATOR_COLOR);
@@ -107,7 +108,7 @@ class Indicator extends LinearLayout implements Checkable {
     private Drawable createEmptyDrawable() {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.OVAL);
-        drawable.setStroke(4, mIndicatorColor);
+        drawable.setStroke(mIndicatorStrokeWidth, mIndicatorColor);
         drawable.setColor(Color.TRANSPARENT);
         return drawable;
     }
