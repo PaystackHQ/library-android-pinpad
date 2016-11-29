@@ -38,7 +38,7 @@ import java.util.List;
  *      app:button_numeric_textsize="18sp"
  *      app:button_alpha_textsize="8sp"
  *      app:button_drawable_size="32dp"
- *      app:text_color="@android:color/white"/> /&gt;
+ *      app:text_color="@android:color/white" /&gt;
  * </pre>
  */
 public class PinPadView extends FrameLayout {
@@ -258,7 +258,7 @@ public class PinPadView extends FrameLayout {
 
     /**
      * Gets the length for the pin
-     * @return
+     * @return int
      */
     public int getPinLength() {
         return mPinLength;
