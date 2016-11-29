@@ -6,6 +6,22 @@ This is an Android library for a pin pad view.
 
 Typical usage of this library is via Java code or in the XML layouts.
 
+## Installation
+
+### Android Studio (using Gradle)
+You do not need to clone this repository or download the files. Just add the following lines to your app's `build.gradle`:
+
+```gradle
+repositories {
+  maven {
+      url 'https://dl.bintray.com/paystack/maven/'
+  }
+}
+dependencies {
+  compile 'co.paystack.android.design.widget:pinpad:1.0'
+}
+```
+
 ### XML layout usage:
 
 ```xml
@@ -21,6 +37,7 @@ Typical usage of this library is via Java code or in the XML layouts.
     app:pin_indicator_spacing="24dp"
     app:pin_length="4"
     app:text_color="@android:color/white"
+    app:place_digits_randomly="true"
     app:text_prompt="Please enter your PIN"
     app:prompt_textsize="15sp"
     app:button_numeric_textsize="18sp"
@@ -41,9 +58,10 @@ pinPadView.setOnPinChangedListener(new PinPadView.OnPinChangedListener() {
     public void onPinChanged(String oldPin, String newPin) {
         // listen for pin changes
     }
-
+});
+pinPadView.onCompletedListener(new PinPadView.OnPinChangedListener() {
     @Override
-    public void onCompletedListener(String pin) {
+    public void onCompleted(String pin) {
         // listen for when the "done" button is clicked
     }
 });
