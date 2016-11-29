@@ -25,7 +25,7 @@
         app:button_numeric_textsize="17sp"
         app:button_alpha_textsize="8sp"
         app:button_drawable_size="24dp"
-        app:pin_length="17"
+        app:pin_length="4"
         app:pin_indicator_stroke_width="1dp"
         app:text_color="@android:color/holo_blue_bright"/>
 </LinearLayout>
