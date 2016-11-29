@@ -169,7 +169,6 @@ public class PinPadView extends FrameLayout {
             mButton7 = (PinPadButton) parent.findViewById(R.id.ps_btn_7);
             mButton8 = (PinPadButton) parent.findViewById(R.id.ps_btn_8);
             mButton9 = (PinPadButton) parent.findViewById(R.id.ps_btn_9);
-            mButton0 = (PinPadButton) parent.findViewById(R.id.ps_btn_0);
             mButtonBack = (PinPadButton) parent.findViewById(R.id.ps_btn_back);
             mButtonDone = (PinPadButton) parent.findViewById(R.id.ps_btn_done);
             mTextViewPrompt = (TextView) parent.findViewById(R.id.pinpad_prompt);
@@ -177,8 +176,7 @@ public class PinPadView extends FrameLayout {
 
             mButtons = Arrays.asList(
                     mButton0, mButton1, mButton2, mButton3, mButton4,
-                    mButton5, mButton6, mButton7, mButton8, mButton9,
-                    mButton0);
+                    mButton5, mButton6, mButton7, mButton8, mButton9);
 
             mPinBuilder = new StringBuilder();
 
