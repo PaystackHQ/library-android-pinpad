@@ -1,7 +1,8 @@
 package com.segunfamisa.demo.pinpad;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 import co.paystack.android.design.widget.PinPadView;
@@ -18,22 +19,36 @@ public class MainActivity extends AppCompatActivity {
 
         pinpadView = (PinPadView) findViewById(R.id.pinpadView);
         textView = (TextView) findViewById(R.id.textView);
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
         pinpadView.setOnPinChangedListener(new PinPadView.OnPinChangedListener() {
             @Override
             public void onPinChanged(String oldPin, String newPin) {
-                textView.setText(textView.getText() + "\nChanged from: " + oldPin + " to " + newPin);
+                appendText("Changed from: '" + oldPin + "' to '" + newPin + "'");
             }
 
         });
 
-        pinpadView.setOnCompletedListener(new PinPadView.OnCompletedListener() {
+        pinpadView.setOnSubmitListener(new PinPadView.OnSubmitListener() {
             @Override
             public void onCompleted(String pin) {
-                textView.setText(textView.getText() + "\nSubmitted: " + pin);
+                appendText("Submitted: " + pin);
+                pinpadView.setAutoSubmit(false);
+            }
 
+            @Override
+            public void onIncompleteSubmit(String pin) {
+                appendText("Submitted Incomplete PIN: " + pin);
             }
         });
+    }
+
+    private void appendText(String text){
+        String nl = (textView.getText().length() > 0 ? "\n" : "");
+        textView.setText(textView.getText() + nl + text);
+        while (textView.canScrollVertically(1)) {
+            textView.scrollBy(0, 10);
+        }
     }
 
 

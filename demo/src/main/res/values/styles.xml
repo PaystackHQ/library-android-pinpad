@@ -14,7 +14,6 @@
         <item name="button_numeric_textsize">24sp</item>
         <item name="button_alpha_textsize">12sp</item>
         <item name="button_drawable_size">32dp</item>
-        <item name="text_color">@android:color/white</item>
         <item name="android:gravity">center</item>
     </style>
 
