@@ -24,25 +24,27 @@ import java.util.Random;
 /**
  * PinPadView
  * <p>
+ *
+ *     XML Sample
  * <pre>
  * &lt;co.paystack.android.design.widget.PinPadView
  *     xmlns:android="http://schemas.android.com/apk/res/android"
  *     xmlns:app="http://schema.android.com/apk/res/android.support.design"
+ *      android:id="@+id/pinpadView"
  *      android:layout_width="match_parent"
+ *      app:auto_submit="true"
  *      android:layout_height="0dp"
- *      android:layout_weight="7"
+ *      android:layout_weight="5"
  *      android:background="#292929"
- *      app:prompt_text="@string/prompt"
- *      app:pin_indicator_spacing="28dp"
- *      app:pin_indicator_filled_color="@android:color/white"
- *      app:pin_indicator_empty_color="@android:color/white"
- *      app:pin_indicator_size="15dp"
- *      app:pin_indicator_stroke_width="4dp"
+ *      app:pin_indicator_spacing="25dp"
+ *      app:prompt_text="To confirm you're the owner of this card, please enter your card pin"
  *      app:prompt_textsize="15sp"
- *      app:button_numeric_textsize="18sp"
- *      app:button_alpha_textsize="8sp"
- *      app:button_drawable_size="32dp"
- *      app:text_color="@android:color/white" /&gt;
+ *      app:button_numeric_textsize="13sp"
+ *      app:button_alpha_textsize="0sp"
+ *      app:button_drawable_size="24dp"
+ *      app:pin_length="4"
+ *      app:pin_indicator_size="15sp"
+ *      app:pin_indicator_stroke_width="1dp" /&gt;
  * </pre>
  */
 public class PinPadView extends FrameLayout {

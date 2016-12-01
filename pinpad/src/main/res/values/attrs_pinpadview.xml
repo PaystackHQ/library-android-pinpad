@@ -2,7 +2,9 @@
 <resources>
     
     <declare-styleable name="PinPadView">
+        <!-- Randomly place numbers on pad? -->
         <attr name="place_digits_randomly" format="boolean" />
+        <!-- Submit once the PIN is complete? -->
         <attr name="auto_submit" format="boolean" />
         <attr name="pin_indicator_filled_color" format="color" />
         <attr name="pin_indicator_empty_color" format="color" />
@@ -18,7 +20,7 @@
         <attr name="prompt_text_paddingBottom" format="dimension" />
         <attr name="button_textcolor" format="color"/>
         <attr name="button_numeric_textsize" format="dimension" />
-        <attr name="button_alpha_show" format="boolean"/>
+        <!-- Set Alphabet TextSize to zero if you don't want them to show -->
         <attr name="button_alpha_textsize" format="dimension" />
         <attr name="button_text_numeric" format="string" />
         <attr name="button_text_alpha" format="string" />
