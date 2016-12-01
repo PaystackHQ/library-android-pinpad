@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Vibrator;
 import android.support.annotation.ColorInt;
 import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
@@ -55,6 +56,7 @@ public class PinPadView extends FrameLayout {
     private static final float DEFAULT_TEXT_SIZE_PROMPT = 18f;
     private static final int DEFAULT_INDICATOR_SPACING = 8;
     private static final boolean DEFAULT_PLACE_DIGITS_RANDOMLY = true;
+    private static final boolean DEFAULT_VIBRATE_ON_INCOMPLETE_SUBMIT = true;
     private static final boolean DEFAULT_AUTO_SUBMIT = true;
 
     @ColorInt
@@ -75,6 +77,7 @@ public class PinPadView extends FrameLayout {
 
     private boolean mPlaceDigitsRandomly = DEFAULT_PLACE_DIGITS_RANDOMLY;
     private boolean mAutoSubmit = DEFAULT_AUTO_SUBMIT;
+    private boolean mVibrateOnIncompleteSubmit = DEFAULT_VIBRATE_ON_INCOMPLETE_SUBMIT;
 
     private PinPadButton mButton0;
     private PinPadButton mButton1;
@@ -186,6 +189,8 @@ public class PinPadView extends FrameLayout {
                     DEFAULT_PLACE_DIGITS_RANDOMLY);
             mAutoSubmit = a.getBoolean(R.styleable.PinPadView_auto_submit,
                     DEFAULT_AUTO_SUBMIT);
+            mVibrateOnIncompleteSubmit = a.getBoolean(R.styleable.PinPadView_vibrate_on_incomplete_submit,
+                    DEFAULT_VIBRATE_ON_INCOMPLETE_SUBMIT);
 
             mIndicatorFilledColor = a.getColor(R.styleable.PinPadView_pin_indicator_filled_color,
                     ResourcesCompat.getColor(getResources(), R.color.pstck_pinpad_default_pin_indicator_filled_color, null));
@@ -267,6 +272,14 @@ public class PinPadView extends FrameLayout {
         mAutoSubmit = autoSubmit;
     }
 
+    public void setVibrateOnIncompleteSubmit(boolean vibrateOnIncompleteSubmit) {
+        mVibrateOnIncompleteSubmit = vibrateOnIncompleteSubmit;
+    }
+
+    public boolean getVibrateOnIncompleteSubmit() {
+        return mVibrateOnIncompleteSubmit;
+    }
+
     public boolean getAutoSubmit() {
         return mAutoSubmit;
     }
@@ -304,6 +317,11 @@ public class PinPadView extends FrameLayout {
      */
     public void setOnPinChangedListener(OnPinChangedListener listener) {
         mPinChangeListener = listener;
+    }
+
+    public void vibratePhone(){
+        Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(300);
     }
 
     /**
@@ -513,6 +531,8 @@ public class PinPadView extends FrameLayout {
                 String number = getValueForButton(button);
                 mPinBuilder.append(number);
                 updatePin(oldPin, mPinBuilder.toString());
+            } else {
+                vibratePhone();
             }
         }
     };
@@ -527,6 +547,8 @@ public class PinPadView extends FrameLayout {
                 String oldPin = mPinBuilder.toString();
                 mPinBuilder.replace(mPinBuilder.length() - 1, mPinBuilder.length(), "");
                 updatePin(oldPin, mPinBuilder.toString().trim());
+            } else {
+                vibratePhone();
             }
         }
     };
@@ -542,6 +564,9 @@ public class PinPadView extends FrameLayout {
                     mSubmitListener.onCompleted(mPinBuilder.toString());
                 }
             } else {
+                if(mVibrateOnIncompleteSubmit){
+                    vibratePhone();
+                }
                 if (mSubmitListener != null) {
                     mSubmitListener.onIncompleteSubmit(mPinBuilder.toString());
                 }

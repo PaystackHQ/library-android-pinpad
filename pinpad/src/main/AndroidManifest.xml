@@ -2,9 +2,6 @@
     package="co.paystack.android.design.widget">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
-    <application android:allowBackup="true" android:label="@string/pstck_pinpad__app_name"
-        android:supportsRtl="true">
-
-    </application>
+    <application></application>
 
 </manifest>

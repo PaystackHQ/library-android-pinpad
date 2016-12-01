@@ -6,6 +6,7 @@
         <attr name="place_digits_randomly" format="boolean" />
         <!-- Submit once the PIN is complete? -->
         <attr name="auto_submit" format="boolean" />
+        <attr name="vibrate_on_incomplete_submit" format="boolean"/>
         <attr name="pin_indicator_filled_color" format="color" />
         <attr name="pin_indicator_empty_color" format="color" />
         <attr name="pin_indicator_size" format="dimension" />
