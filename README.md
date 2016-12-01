@@ -25,24 +25,23 @@ dependencies {
 ### XML layout usage:
 
 ```xml
-<co.paystack.android.design.widget.PinPadView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/black"
-    app:pin_indicator_color="@android:color/white"
-    app:pin_indicator_size="15dp"
-    app:pin_indicator_stroke_width="4dp"
-    app:pin_indicator_spacing="24dp"
-    app:pin_length="4"
-    app:text_color="@android:color/white"
-    app:place_digits_randomly="true"
-    app:text_prompt="Please enter your PIN"
-    app:prompt_textsize="15sp"
-    app:button_numeric_textsize="18sp"
-    app:button_alpha_textsize="8sp"
-    app:button_drawable_size="32dp"/>
+    <co.paystack.android.design.widget.PinPadView xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pinpadView"
+            android:layout_width="match_parent"
+            app:auto_submit="true"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:background="#292929"
+            app:pin_indicator_spacing="25dp"
+            app:prompt_text="To confirm you're the owner of this card, please enter your card pin"
+            app:prompt_textsize="15sp"
+            app:button_numeric_textsize="13sp"
+            app:button_alpha_textsize="0sp"
+            app:button_drawable_size="24dp"
+            app:pin_length="4"
+            app:pin_indicator_size="15sp"
+            app:pin_indicator_stroke_width="1dp"/>
 ```
 
 ### Java Usage
@@ -51,7 +50,7 @@ You can also make use of the `PinPadView` via Java code. Typical usage looks lik
 
 ```java
 pinPadView.setPromptText("Please enter your PIN");
-pinPadView.setTextColor(Color.WHITE);
+pinPadView.setPromptTextColor(Color.WHITE);
 pinPadView.setPinLength(4);
 pinPadView.setOnPinChangedListener(new PinPadView.OnPinChangedListener() {
     @Override
@@ -59,15 +58,21 @@ pinPadView.setOnPinChangedListener(new PinPadView.OnPinChangedListener() {
         // listen for pin changes
     }
 });
-pinPadView.onCompletedListener(new PinPadView.OnPinChangedListener() {
+pinPadView.onSubmitListener(new PinPadView.onSubmitListener() {
     @Override
     public void onCompleted(String pin) {
         // listen for when the "done" button is clicked
+        // and the pin is complete
+    }
+    @Override
+    public void onIncompleteSubmit(String pin) {
+        // listen for when the "done" button is clicked
+        // and the pin is incomplete
     }
 });
 ```
 
-You can ultimately combine both XML usage and Java usage to suit your usecase.
+You can ultimately combine both XML usage and Java usage to suit your use case.
 
 # Contributing
 Contributions are welcome. Contributions guide is coming soon.
