@@ -10,6 +10,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.StateSet;
@@ -34,7 +35,6 @@ class Indicator extends LinearLayout implements Checkable {
         void onCheckedChanged(View checkableView, boolean isChecked);
     }
 
-    private static final int DEFAULT_INDICATOR_COLOR = Color.WHITE;
     private static final int DEFAULT_INDICATOR_SIZE = 12;
     private static final int DEFAULT_INDICATOR_STROKE_WIDTH = 4;
     private static final int[] CHECKED_STATE_SET = {android.R.attr.state_checked};
@@ -42,7 +42,8 @@ class Indicator extends LinearLayout implements Checkable {
     private boolean mChecked = false;
 
     @ColorInt
-    private int mIndicatorColor = DEFAULT_INDICATOR_COLOR;
+    private int mIndicatorFilledColor = Color.WHITE;
+    private int mIndicatorEmptyColor = Color.WHITE;
     private int mIndicatorSize;
     private int mIndicatorStrokeWidth = DEFAULT_INDICATOR_STROKE_WIDTH;
 
@@ -78,9 +79,13 @@ class Indicator extends LinearLayout implements Checkable {
                         convertDpToPixel(DEFAULT_INDICATOR_SIZE));
                 mIndicatorStrokeWidth = a.getDimensionPixelOffset(R.styleable.PinPadView_pin_indicator_stroke_width,
                         DEFAULT_INDICATOR_STROKE_WIDTH);
-                if (a.hasValue(R.styleable.PinPadView_pin_indicator_color)) {
-                    mIndicatorColor = a.getColor(R.styleable.PinPadView_pin_indicator_color,
-                            DEFAULT_INDICATOR_COLOR);
+                if (a.hasValue(R.styleable.PinPadView_pin_indicator_filled_color)) {
+                    mIndicatorFilledColor = a.getColor(R.styleable.PinPadView_pin_indicator_filled_color,
+                            ResourcesCompat.getColor(getResources(), R.color.pstck_pinpad_default_pin_indicator_filled_color, null));
+                }
+                if (a.hasValue(R.styleable.PinPadView_pin_indicator_empty_color)) {
+                    mIndicatorEmptyColor = a.getColor(R.styleable.PinPadView_pin_indicator_empty_color,
+                            ResourcesCompat.getColor(getResources(), R.color.pstck_pinpad_default_pin_indicator_empty_color, null));
                 }
                 a.recycle();
             }
@@ -108,7 +113,7 @@ class Indicator extends LinearLayout implements Checkable {
     private Drawable createEmptyDrawable() {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.OVAL);
-        drawable.setStroke(mIndicatorStrokeWidth, mIndicatorColor);
+        drawable.setStroke(mIndicatorStrokeWidth, mIndicatorEmptyColor);
         drawable.setColor(Color.TRANSPARENT);
         return drawable;
     }
@@ -116,7 +121,7 @@ class Indicator extends LinearLayout implements Checkable {
     private Drawable createFilledDrawable() {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.OVAL);
-        drawable.setColor(mIndicatorColor);
+        drawable.setColor(mIndicatorFilledColor);
         return drawable;
     }
 
@@ -126,8 +131,13 @@ class Indicator extends LinearLayout implements Checkable {
         setLayoutParams(params);
     }
 
-    public void setColor(@ColorInt int color) {
-        mIndicatorColor = color;
+    public void setFilledColor(@ColorInt int color) {
+        mIndicatorFilledColor = color;
+        requestLayout();
+    }
+
+    public void setEmptyColor(@ColorInt int color) {
+        mIndicatorEmptyColor = color;
         requestLayout();
     }
 

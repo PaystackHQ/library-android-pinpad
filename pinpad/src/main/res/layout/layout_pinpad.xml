@@ -10,21 +10,21 @@
 
     <!-- pinpad prompt -->
     <TextView
-        android:id="@+id/pinpad_prompt"
+        android:id="@+id/pstck_pinpad__prompt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/ps_padding_prompt"
-        android:paddingRight="@dimen/ps_padding_prompt"
-        android:paddingTop="@dimen/ps_padding_prompt_top"
+        android:padding="@dimen/pstck_pinpad__default_prompt_padding"
+        android:paddingTop="@dimen/pstck_pinpad__default_prompt_paddingTop"
+        android:paddingBottom="@dimen/pstck_pinpad__default_prompt_paddingBottom"
         android:textSize="17sp"
         android:gravity="center"
         tools:text="To confirm you're the owner of this card, please enter your card pin"/>
 
     <!-- indicator layout -->
     <LinearLayout
-        android:id="@+id/indicator_layout"
+        android:id="@+id/pstck_pinpad__indicator_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ps_height_indicator"
+        android:layout_height="@dimen/pstck_pinpad__default_indicator_height"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
@@ -47,21 +47,21 @@
             <!-- button 1 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_1"
-                app:button_text_numeric="@string/num_1"/>
+                android:id="@+id/pstck_pinpad__btn_1"
+                app:button_text_numeric="@string/pstck_pinpad__num_1"/>
 
             <!-- button 2 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_2"
-                app:button_text_numeric="@string/num_2"
+                android:id="@+id/pstck_pinpad__btn_2"
+                app:button_text_numeric="@string/pstck_pinpad__num_2"
                 app:button_text_alpha="abc"/>
 
             <!-- button 3 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_3"
-                app:button_text_numeric="@string/num_3"
+                android:id="@+id/pstck_pinpad__btn_3"
+                app:button_text_numeric="@string/pstck_pinpad__num_3"
                 app:button_text_alpha="def"/>
         </TableRow>
 
@@ -75,22 +75,22 @@
             <!-- button 4 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_4"
-                app:button_text_numeric="@string/num_4"
+                android:id="@+id/pstck_pinpad__btn_4"
+                app:button_text_numeric="@string/pstck_pinpad__num_4"
                 app:button_text_alpha="ghi"/>
 
             <!-- button 5 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_5"
-                app:button_text_numeric="@string/num_5"
+                android:id="@+id/pstck_pinpad__btn_5"
+                app:button_text_numeric="@string/pstck_pinpad__num_5"
                 app:button_text_alpha="jkl"/>
 
             <!-- button 6 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_6"
-                app:button_text_numeric="@string/num_6"
+                android:id="@+id/pstck_pinpad__btn_6"
+                app:button_text_numeric="@string/pstck_pinpad__num_6"
                 app:button_text_alpha="mno"/>
         </TableRow>
 
@@ -103,22 +103,22 @@
             <!-- button 7 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_7"
-                app:button_text_numeric="@string/num_7"
+                android:id="@+id/pstck_pinpad__btn_7"
+                app:button_text_numeric="@string/pstck_pinpad__num_7"
                 app:button_text_alpha="pqrs"/>
 
             <!-- button 8 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_8"
-                app:button_text_numeric="@string/num_8"
+                android:id="@+id/pstck_pinpad__btn_8"
+                app:button_text_numeric="@string/pstck_pinpad__num_8"
                 app:button_text_alpha="tuv"/>
 
             <!-- button 9 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_9"
-                app:button_text_numeric="@string/num_9"
+                android:id="@+id/pstck_pinpad__btn_9"
+                app:button_text_numeric="@string/pstck_pinpad__num_9"
                 app:button_text_alpha="wxyz"/>
         </TableRow>
 
@@ -131,19 +131,19 @@
             <!-- back button -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_back"
+                android:id="@+id/pstck_pinpad__btn_back"
                 app:button_drawable="@drawable/ps_backspace"/>
 
             <!-- button 0 -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_0"
-                app:button_text_numeric="@string/num_0"/>
+                android:id="@+id/pstck_pinpad__btn_0"
+                app:button_text_numeric="@string/pstck_pinpad__num_0"/>
 
             <!-- done button -->
             <co.paystack.android.design.widget.PinPadButton
                 style="@style/Widget.PinPad"
-                android:id="@+id/ps_btn_done"
+                android:id="@+id/pstck_pinpad__btn_done"
                 app:button_text_numeric="Done"/>
         </TableRow>
     </TableLayout>

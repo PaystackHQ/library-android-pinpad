@@ -80,8 +80,8 @@ class PinPadButton extends ForegroundRelativeLayout {
             if (a.hasValue(R.styleable.PinPadView_button_text_alpha)) {
                 mTextAlphabet = a.getString(R.styleable.PinPadView_button_text_alpha);
             }
-            if (a.hasValue(R.styleable.PinPadView_text_color)) {
-                mTextColor = a.getColorStateList(R.styleable.PinPadView_text_color);
+            if (a.hasValue(R.styleable.PinPadView_button_textcolor)) {
+                mTextColor = a.getColorStateList(R.styleable.PinPadView_button_textcolor);
             }
 
             a.recycle();

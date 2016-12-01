@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="ps_padding_prompt">24dp</dimen>
-    <dimen name="ps_padding_prompt_top">16dp</dimen>
-    <dimen name="ps_height_indicator">64dp</dimen>
+    <dimen name="pstck_pinpad__default_prompt_padding">24dp</dimen>
+    <dimen name="pstck_pinpad__default_prompt_paddingTop">16dp</dimen>
+    <dimen name="pstck_pinpad__default_prompt_paddingBottom">16dp</dimen>
+    <dimen name="pstck_pinpad__default_indicator_height">64dp</dimen>
 </resources>

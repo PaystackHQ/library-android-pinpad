@@ -7,7 +7,10 @@
     <style name="Widget.PinPad">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="text_color">@android:color/white</item>
+        <item name="button_textcolor">@color/pstck_pinpad_default_button_textcolor</item>
+        <item name="prompt_textcolor">@color/pstck_pinpad_default_prompt_textcolor</item>
+        <item name="pin_indicator_filled_color">@color/pstck_pinpad_default_pin_indicator_filled_color</item>
+        <item name="pin_indicator_empty_color">@color/pstck_pinpad_default_pin_indicator_empty_color</item>
         <item name="android:gravity">center</item>
     </style>
 
