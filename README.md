@@ -12,11 +12,6 @@ Typical usage of this library is via Java code or in the XML layouts.
 You do not need to clone this repository or download the files. Just add the following lines to your app's `build.gradle`:
 
 ```gradle
-repositories {
-  maven {
-      url 'https://dl.bintray.com/paystack/maven/'
-  }
-}
 dependencies {
   compile 'co.paystack.android.design.widget:pinpad:1.0'
 }
