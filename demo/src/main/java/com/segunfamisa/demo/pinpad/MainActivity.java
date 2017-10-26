@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCompleted(String pin) {
                 appendText("Submitted: " + pin);
                 pinpadView.setAutoSubmit(false);
+                pinpadView.clear();
             }
 
             @Override

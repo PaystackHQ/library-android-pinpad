@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<co.paystack.android.design.widget.ForegroundRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<co.paystack.android.design.widget.ForegroundRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -7,7 +8,7 @@
     android:layout_gravity="center"
     android:clickable="true"
     android:foreground="?selectableItemBackground"
-    >
+    android:focusable="true">
 
     <!-- numeric text -->
     <TextView
@@ -32,11 +33,12 @@
         android:textAllCaps="true"
         android:layout_toRightOf="@id/numeric_text"
         android:layout_toEndOf="@id/numeric_text"
+        android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"
         android:layout_above="@id/numeric_text"
         tools:text="ABC"
-        tools:textSize="8sp"
+        tools:textSize="12sp"
         tools:visibility="visible"/>
 
     <ImageView

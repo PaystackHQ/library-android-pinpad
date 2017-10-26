@@ -49,13 +49,13 @@ class ForegroundRelativeLayout extends RelativeLayout {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ForegroundView,
                 defStyle, 0);
         mForegroundGravity = a.getInt(
-                R.styleable.ForegroundView_android_foregroundGravity, mForegroundGravity);
-        final Drawable d = a.getDrawable(R.styleable.ForegroundView_android_foreground);
+                R.styleable.ForegroundView_foregroundGravity, mForegroundGravity);
+        final Drawable d = a.getDrawable(R.styleable.ForegroundView_foreground);
         if (d != null) {
             setForeground(d);
         }
         mForegroundInPadding = a.getBoolean(
-                R.styleable.ForegroundView_android_foregroundInsidePadding, true);
+                R.styleable.ForegroundView_foregroundInsidePadding, true);
 
         a.recycle();
     }
