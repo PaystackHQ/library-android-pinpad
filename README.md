@@ -13,7 +13,7 @@ You do not need to clone this repository or download the files. Just add the fol
 
 ```gradle
 dependencies {
-  compile 'co.paystack.android.design.widget:pinpad:1.0.1'
+  compile 'co.paystack.android.design.widget:pinpad:1.0.4'
 }
 ```
 
