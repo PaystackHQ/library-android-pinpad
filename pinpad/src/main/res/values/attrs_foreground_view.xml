@@ -18,7 +18,7 @@
 
     <declare-styleable name="ForegroundView">
         <attr name="foreground" format="reference" />
-        <attr name="foregroundInsidePadding" format="dimension" />
+        <attr name="foregroundInsidePadding" format="boolean" />
         <attr name="foregroundGravity" format="integer" />
     </declare-styleable>
 
