@@ -5,8 +5,6 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -16,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 class PinPadButton extends ForegroundRelativeLayout {
     private static final float DEFAULT_TEXT_SIZE_NUMERIC = 18f;
@@ -63,7 +64,7 @@ class PinPadButton extends ForegroundRelativeLayout {
         mImageIcon = (ImageView) view.findViewById(R.id.pinbutton_icon);
 
         if (attrs != null) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PinPadView ,defStyle, 0);
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PinPadView, defStyle, 0);
 
             mTextSizeNumeric = a.getDimension(R.styleable.PinPadView_button_numeric_textsize,
                     DEFAULT_TEXT_SIZE_NUMERIC);
@@ -124,6 +125,7 @@ class PinPadButton extends ForegroundRelativeLayout {
 
     /**
      * Sets a button click listener for the button
+     *
      * @param listener - {@link OnButtonClickListener} listener
      */
     public void setButtonClickListener(OnButtonClickListener listener) {
@@ -162,6 +164,7 @@ class PinPadButton extends ForegroundRelativeLayout {
 
     /**
      * Sets the numeric text on the button
+     *
      * @param text - numeric text to display on the button
      */
     public void setNumericText(String text) {
@@ -181,6 +184,7 @@ class PinPadButton extends ForegroundRelativeLayout {
 
     /**
      * Sets the alphabet text on the button
+     *
      * @param text - alphabet text to display on the button
      */
     public void setAlphabetText(String text) {
@@ -200,6 +204,7 @@ class PinPadButton extends ForegroundRelativeLayout {
 
     /**
      * Sets the image size to use for images set on the button
+     *
      * @param imageSize - required image size in pixels
      */
     public void setImageIconSize(int imageSize) {
@@ -214,6 +219,7 @@ class PinPadButton extends ForegroundRelativeLayout {
 
     /**
      * Sets the text color to use for both the alphabet and numeric texts
+     *
      * @param color - @{@link ColorInt} representation of the color
      */
     public void setTextColor(@ColorInt int color) {
@@ -223,8 +229,8 @@ class PinPadButton extends ForegroundRelativeLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_UP) {
-            if(mButtonClickListener != null) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (mButtonClickListener != null) {
                 mButtonClickListener.onButtonClick(this);
             }
         }
@@ -233,8 +239,8 @@ class PinPadButton extends ForegroundRelativeLayout {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if(event.getAction() == KeyEvent.ACTION_UP && (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
-            if(mButtonClickListener != null) {
+        if (event.getAction() == KeyEvent.ACTION_UP && (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER || event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+            if (mButtonClickListener != null) {
                 mButtonClickListener.onButtonClick(this);
             }
         }

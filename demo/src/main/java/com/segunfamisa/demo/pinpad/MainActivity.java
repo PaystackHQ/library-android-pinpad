@@ -1,9 +1,10 @@
 package com.segunfamisa.demo.pinpad;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import co.paystack.android.design.widget.PinPadView;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void appendText(String text){
+    private void appendText(String text) {
         String nl = (textView.getText().length() > 0 ? "\n" : "");
         textView.setText(textView.getText() + nl + text);
         while (textView.canScrollVertically(1)) {

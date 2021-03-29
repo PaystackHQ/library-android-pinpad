@@ -9,14 +9,15 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.StateSet;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.LinearLayout;
+
+import androidx.annotation.ColorInt;
+import androidx.core.content.res.ResourcesCompat;
 
 class Indicator extends LinearLayout implements Checkable {
 
@@ -105,7 +106,7 @@ class Indicator extends LinearLayout implements Checkable {
     private StateListDrawable createDrawable() {
         StateListDrawable drawable = new StateListDrawable();
 
-        drawable.addState(new int[] { android.R.attr.state_checked}, createFilledDrawable());
+        drawable.addState(new int[]{android.R.attr.state_checked}, createFilledDrawable());
         drawable.addState(StateSet.WILD_CARD, createEmptyDrawable());
         return drawable;
     }
@@ -181,7 +182,7 @@ class Indicator extends LinearLayout implements Checkable {
         setChecked(!mChecked);
     }
 
-    private int convertDpToPixel(float dp){
+    private int convertDpToPixel(float dp) {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         float px = dp * (metrics.densityDpi / 160f);
         return Math.round(px);
