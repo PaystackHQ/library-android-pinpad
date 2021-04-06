@@ -6,8 +6,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Vibrator;
-import android.support.annotation.ColorInt;
-import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -17,6 +15,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.core.content.res.ResourcesCompat;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +26,7 @@ import java.util.Random;
 /**
  * PinPadView
  * <p>
- *
- *     XML Sample
+ * XML Sample
  * <pre>
  * &lt;co.paystack.android.design.widget.PinPadView
  *     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -319,7 +319,7 @@ public class PinPadView extends FrameLayout {
         mPinChangeListener = listener;
     }
 
-    public void vibratePhone(){
+    public void vibratePhone() {
         Vibrator v = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(300);
     }
@@ -537,7 +537,7 @@ public class PinPadView extends FrameLayout {
         }
     };
 
-    public void clear(){
+    public void clear() {
         String oldPin = mPinBuilder.toString();
         mPinBuilder.setLength(0);
         updatePin(oldPin, mPinBuilder.toString());
@@ -570,7 +570,7 @@ public class PinPadView extends FrameLayout {
                     mSubmitListener.onCompleted(mPinBuilder.toString());
                 }
             } else {
-                if(mVibrateOnIncompleteSubmit){
+                if (mVibrateOnIncompleteSubmit) {
                     vibratePhone();
                 }
                 if (mSubmitListener != null) {
