@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: "com.jfrog.bintray"
-apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -35,36 +33,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-
-ext {
-    // Where you will see your artifact in Bintray's web interface
-    // The "bintrayName" should match the name of the Bintray repro.
-    bintrayRepo = 'maven'
-    bintrayName = 'pinpad'
-
-    // Maven metadata
-    publishedGroupId = 'co.paystack.android.design.widget'
-    libraryName = 'pinpad'
-    // Save yourself a head ache, and set this equal to the name of the Android Studio library
-    // module. The artifact name needs to match the name of the library.
-    artifact = 'pinpad'
-
-    libraryDescription = 'A PinPad for Android Apps'
-    libraryVersion = rootProject.ext.versionName
-
-    developerId = 'paystack'
-    developerName = 'Paystack'
-    developerEmail = 'developers@paystack.co'
-
-    siteUrl = 'https://github.com/PaystackHQ/android-pinpad'
-    gitUrl = 'https://github.com/PaystackHQ/android-pinpad.git'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'https://raw.githubusercontent.com/PaystackHQ/android-pinpad/master/LICENSE.md'
-    allLicenses = ["Apache-2.0"]
-}
-
-apply from: 'https://raw.githubusercontent.com/ibrahimlawal/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/ibrahimlawal/JCenter/master/bintrayv1.gradle'
-
-
+apply from: "https://github.com/PaystackHQ/publish-mavencentral/raw/main/maven-publish.gradle"
