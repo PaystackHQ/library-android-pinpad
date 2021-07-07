@@ -1,4 +1,7 @@
 # Android Pinpad
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/co.paystack.android.design.widget/pinpad/badge.svg)](https://maven-badges.herokuapp.com/maven-central/co.paystack.android.design.widget/pinpad)
+
+
 
 This is an Android library for a pin pad view.
 
@@ -13,7 +16,7 @@ You do not need to clone this repository or download the files. Just add the fol
 
 ```gradle
 dependencies {
-  compile 'co.paystack.android.design.widget:pinpad:1.0.4'
+  compile 'co.paystack.android.design.widget:pinpad:1.0.8'
 }
 ```
 
